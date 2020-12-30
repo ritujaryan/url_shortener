@@ -1,8 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Visits</title>
+
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+
 
     <style type="text/css">
         table,
@@ -18,7 +22,7 @@
             background-color: coral;
         }
         td{
-            background-color: darkblue;
+            background-color: lightgreen;
         }
         .navbar-custom {
 			background: #2C3E50;
@@ -27,12 +31,25 @@
 			font-weight: 700;
 			font-size: x-large;
 			border: none;
-			padding-left: 5%;
-			padding-right: 5%;
-			/* text-align: center; */
+            padding: 5px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+			text-align: left; 
 			color: white;
             width: 100%;
         }
+        body{
+            background-color: violet;
+        }
+        footer {
+			color: white;
+			width: 100%;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			padding: 1px 1px;
+			background-color: #233140;
+		}
 
     </style>
 
@@ -70,6 +87,15 @@
 
         </tbody>
     </table>
+    <footer class="text-center">
+		<div class="container">
+			<div class="row">
+				<h3> Created by -
+					<a href="https://rishabhrathi22.github.io" target="_blank" style="color: white;"> Rituj Aryan </a>
+				</h3>
+			</div>
+		</div>
+	</footer>
 </body>
 
 </html>
