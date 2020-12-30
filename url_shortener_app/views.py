@@ -29,7 +29,7 @@ def shorten(request):
             else:
                 return HttpResponse('Sorry. The custom name is already taken.')
 
-        return HttpResponse('Your shorturl is ' + 'http://localhost:8000/redirect/' + final_url)
+        return HttpResponse('Your shorturl is ' + 'https://ra-shorturl.herokuapp.com/redirect/' + final_url)
     else:
         myform = URLForm()
         return render(request, 'form.html', {'form': myform})
