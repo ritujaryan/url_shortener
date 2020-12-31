@@ -43,7 +43,7 @@ def redirect_url(request, link):
         return redirect(req_longurl)
     except Exception as e:
         print(e)
-        return HttpResponse('Invalid short url.')
+        return render(request, 'invalid.html')
 
 def get_analytics(request):
     rows = LongToShort.objects.all()
