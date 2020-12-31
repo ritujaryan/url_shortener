@@ -42,25 +42,25 @@
       }
       tr:nth-child(even) {
         background-color:#cfd8dc;
-      }
             
 
         }
-        
-        nav{
+        .navbar-custom {
 			background: #2C3E50;
 			font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 			text-transform: none;
 			font-weight: 700;
 			font-size: x-large;
 			border: none;
-            padding: 5px;
-            padding-bottom: 10px;
-            padding-top: 10px;
-			text-align: left; 
+			padding-left: 5%;
+			padding-right: 5%;
+			/* text-align: center; */
 			color: white;
-            width: 100%;
-        }
+			width: 100%;
+		}
+        
+        
+        
         body{
             background-color: lightseagreen;
         }
@@ -79,10 +79,10 @@
 </head>
 
 <body style="text-align: center;">
-    <nav class="navbar-custom">
-		<div>
-			<div>
-				<a href="#" style="color: white; font-size: x-large;">URL Shortener</a>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#" style="color: white; font-size: x-large;">URL Shortener</a>
 			</div>
 		</div>
 	</nav>
