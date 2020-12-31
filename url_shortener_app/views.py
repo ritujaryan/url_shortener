@@ -27,7 +27,7 @@ def shorten(request):
                 obj = LongToShort(longurl = ip_longurl, shorturl = ip_customname)
                 obj.save()
             else:
-                return HttpResponse('Sorry. The custom name is already taken.')
+                return reder(request, 'sorry.html')
 
         return HttpResponse('Your shorturl is ' + 'https://ra-shorturl.herokuapp.com/redirect/' + final_url)
     else:
