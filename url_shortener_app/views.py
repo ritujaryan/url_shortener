@@ -20,6 +20,7 @@ def shorten(request):
             final_url = gen_shorturl
             obj = LongToShort(longurl = ip_longurl, shorturl = gen_shorturl)
             obj.save()
+            
         else:
             entries = LongToShort.objects.filter(shorturl = ip_customname)
             if len(entries) == 0:
@@ -27,7 +28,11 @@ def shorten(request):
                 obj = LongToShort(longurl = ip_longurl, shorturl = ip_customname)
                 obj.save()
             else:
-                return render(request, 'sorry.html')
+                ob = LongToShort.objects.get(shorturl= ip_customname)
+                if ob.longurl == ip_longurl:
+                    return HttpResponse('Your shorturl is ' + 'https://ra-shorturl.herokuapp.com/redirect/' + ip_longurl)
+                else:
+                    return render(request, 'sorry.html')
 
         return HttpResponse('Your shorturl is ' + 'https://ra-shorturl.herokuapp.com/redirect/' + final_url)
     else:
@@ -44,6 +49,7 @@ def redirect_url(request, link):
     except Exception as e:
         print(e)
         return render(request, 'invalid.html')
+
 
 def get_analytics(request):
     rows = LongToShort.objects.all()
