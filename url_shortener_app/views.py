@@ -30,7 +30,7 @@ def shorten(request):
             else:
                 ob = LongToShort.objects.get(shorturl= ip_customname)
                 if ob.longurl == ip_longurl:
-                    return HttpResponse('Your shorturl is ' + 'https://ra-shorturl.herokuapp.com/redirect/' + ip_longurl)
+                    return HttpResponse('Your shorturl is ' + 'https://ra-shorturl.herokuapp.com/redirect/' + ip_customname)
                 else:
                     return render(request, 'sorry.html')
 
