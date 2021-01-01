@@ -7,7 +7,7 @@ class LongToShort(models.Model):
     visit_count = models.IntegerField(default = 1)
 
 class UserLocation(models.Model):
-    shorturl = models.CharField(max_length=25, unique=True)
+    shorturl = models.CharField(max_length=25)
     city = models.CharField(max_length=25)
     long = models.DecimalField(max_digits=8, decimal_places=3)
     lat = models.DecimalField(max_digits=8, decimal_places=3) 

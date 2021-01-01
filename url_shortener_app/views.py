@@ -1,18 +1,31 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-#from django.contrib.gis.utils import GeoIP
+from django.contrib.gis.geoip2 import GeoIP2
 #from django.template import  RequestContext
 #from django.shortcuts import render_to_response
 from django.utils import timezone
 import requests
-
+import geoip2.database
+import socket
+import re
+import json
+from urllib.request import urlopen
 from .forms import URLForm
 from .models import LongToShort
+from .models import UserLocation
 
 import secrets
 
 def home(request):
     return HttpResponse('Hello.')
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 def shorten(request):
     if request.method == 'POST':
@@ -50,13 +63,21 @@ def redirect_url(request, link):
         req_longurl = obj.longurl
         obj.visit_count += 1
         obj.save()
-        res = requests.get('https://ipinfo.io/')
-        data = res.jason()
-        location = data['loc'],split(',')
-        llat = float(location[1])
-        llong = float(location[0])
-        ob = UserLocation(shorturl = link, city = data['city'], long = llong, lat = llat)
-        ob.save() 
+        host_name = socket.gethostname()
+        response = urlopen('https://ipinfo.io/json')
+        data = json.load(response)
+
+        # g = GeoIP2('./geoip')
+        # ip = request.META.get('REMOTE_ADDR')
+        # reader = geoip2.database.Reader('./geoip/GeoLite2-City.mmdb')
+        # response = reader.city(ip)
+        # print(response.city.name)
+        print(data)
+        # loc = g.city(ip)
+        # print(loc)
+        ab = data['loc'].split(',')
+        ob = UserLocation(shorturl = link, city = data['city'], long = ab[0], lat = ab[1])
+        ob.save()
         return redirect(req_longurl)
     except Exception as e:
         print(e)

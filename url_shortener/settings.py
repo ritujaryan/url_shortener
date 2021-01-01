@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'url_shortener_app',
+
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 import os
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+GEOIP2_PATH = './geoip'
