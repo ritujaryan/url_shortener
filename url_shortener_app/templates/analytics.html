@@ -1,26 +1,27 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Analytics</title>
 
-<head>
-    <title>Visits</title>
-
-    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet" type="text/css">
-
+    <link
+      href="{% static 'bootstrap.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <style type="text/css">
-        
-        table {
+      table {
         align-self: center;
         left: 50%;
         top: 50%;
-        
+
         width: 60%;
         border-collapse: collapse;
         border-spacing: 0;
         box-shadow: 0 2px 15px rgba(64, 64, 64, 0.7);
         border-radius: 12px 12px 0 0;
-        
+
         overflow-y: scroll;
       }
       td,
@@ -41,90 +42,106 @@
         font-family: "Montserrat", sans-serif;
       }
       tr:nth-child(even) {
-        background-color:#cfd8dc;
-            
+        background-color: #cfd8dc;
+      }
+      .navbar-custom {
+        background: #2c3e50;
+        font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial,
+          sans-serif;
+        text-transform: none;
+        font-weight: 700;
+        font-size: x-large;
+        border: none;
+        padding-left: 5%;
+        padding-right: 5%;
+        /* text-align: center; */
+        color: white;
+        width: 100%;
+      }
 
-        }
-        .navbar-custom {
-			background: #2C3E50;
-			font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-			text-transform: none;
-			font-weight: 700;
-			font-size: x-large;
-			border: none;
-			padding-left: 5%;
-			padding-right: 5%;
-			/* text-align: center; */
-			color: white;
-			width: 100%;
-		}
-        
-        
-        
-        body{
-            background-color: lightseagreen;
-        }
-        footer {
-			color: white;
-			width: 100%;
-			position:relative;
-			left: 0;
-			bottom: 0;
-			padding: 1px 1px;
-			background-color: #233140;
-		}
-
+      body {
+        background-color: lightseagreen;
+      }
+      footer {
+        color: white;
+        width: 100%;
+        position: relative;
+        left: 0;
+        bottom: 0;
+        padding: 1px 1px;
+        background-color: #233140;
+      }
     </style>
+  </head>
 
-</head>
-
-<body style="text-align: center;">
+  <body style="text-align: center">
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-		<div class="container-fluid">
-			<div class="navbar-header">
-                <a class="navbar-brand" href="https://ra-shorturl.herokuapp.com/" style="color: white; font-size: x-large;">URL Shortener</a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="navbar-brand" href="https://ra-shorturl.herokuapp.com/" style="color: white; font-size: 20px;">Home</a>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="navbar-brand" href="https://ra-shorturl.herokuapp.com/analytics" style="color: white; font-size: 20px;">Analytics</a>
-			</div>
-		</div>
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a
+            class="navbar-brand"
+            href="https://ra-shorturl.herokuapp.com/"
+            style="color: white; font-size: x-large"
+            >URL Shortener</a
+          >
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a
+            class="navbar-brand"
+            href="https://ra-shorturl.herokuapp.com/"
+            style="color: white; font-size: 20px"
+            >Home</a
+          >
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a
+            class="navbar-brand"
+            href="https://ra-shorturl.herokuapp.com/analytics"
+            style="color: white; font-size: 20px"
+            >Analytics</a
+          >
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a
+            class="navbar-brand"
+            href="https://ra-shorturl.herokuapp.com/views"
+            style="color: white; font-size: 20px"
+            >Visits</a
+          >
+        </div>
+      </div>
     </nav>
-    <br><br>
-    <h1> Number of Visits </h1>
-    <br>
-    <table style="margin: 0 auto;">
-        <thead>
-            <tr>
-                <th> Long URL </th>
-                <th> Short URL </th>
-                <th> Visits </th>
-            </tr>
-        </thead>
-        <tbody>
-
-            {% for item in data %}
-            <tr>
-                <!-- <td><a href="https://rr-url.herokuapp.com/{{ d.src }}" target="_blank"> https://rr-url.herokuapp.com/{{ d.src }} </a></td> -->
-                <td> {{ item.longurl }} </td>
-                <td> {{ item.shorturl }} </td>
-                <td> {{ item.visit_count }} </td>
-
-            </tr>
-            {% endfor %}
-
-        </tbody>
+    <br /><br />
+    <h1>Analytics</h1>
+    <br />
+    <table style="margin: 0 auto">
+      <thead>
+        <tr>
+          <th>Short URL</th>
+          <th>City</th>
+          <th>Lattitude</th>
+          <th>Longitude</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in data %}
+        <tr>
+          <!-- <td><a href="https://rr-url.herokuapp.com/{{ d.src }}" target="_blank"> https://rr-url.herokuapp.com/{{ d.src }} </a></td> -->
+          <td>{{ item.shorturl }}</td>
+          <td>{{ item.city }}</td>
+          <td>{{ item.lat }}</td>
+          <td>{{ item.long }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
-    <br>
+    <br />
     <footer class="text-center">
-		<div class="container">
-			<div class="row">
-				<h3> Created by -
-					<a href="#" target="_blank" style="color: white;"> Rituj Aryan </a>
-				</h3>
-			</div>
-		</div>
-	</footer>
-</body>
-
+      <div class="container">
+        <div class="row">
+          <h3>
+            Created by -
+            <a href="#" target="_blank" style="color: white"> Rituj Aryan </a>
+          </h3>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

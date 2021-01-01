@@ -8,4 +8,5 @@ urlpatterns = [
     path('short/', views.shorten),
     path('redirect/<slug:link>/', views.redirect_url),
     path('analytics/', views.get_analytics),
+    path('views/', views.get_views),
 ]

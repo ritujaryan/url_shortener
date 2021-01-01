@@ -88,6 +88,11 @@ def redirect_url(request, link):
         return render(request, 'invalid.html')
 
 
-def get_analytics(request):
+def get_views(request):
     rows = LongToShort.objects.all()
+    return render(request, 'views.html', {'data': rows})
+
+
+def get_analytics(request):
+    rows = UserLocation.objects.all()
     return render(request, 'analytics.html', {'data': rows})
