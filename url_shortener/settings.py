@@ -81,11 +81,11 @@ import dj_database_url
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydb',
-        'USER': 'rishabh',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'd1vsfu0beiomkt',
+        'USER': 'yiuthejomrzjnk',
+        'PASSWORD': '1a33884ec37f1b9e5da65031e2ae0b10fe7fd99d2aa53a46519e125381825d85',
+        'HOST': 'ec2-54-208-233-243.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 

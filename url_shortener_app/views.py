@@ -1,5 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+#from django.contrib.gis.utils import GeoIP
+#from django.template import  RequestContext
+#from django.shortcuts import render_to_response
+from django.utils import timezone
+import requests
 
 from .forms import URLForm
 from .models import LongToShort
@@ -45,6 +50,13 @@ def redirect_url(request, link):
         req_longurl = obj.longurl
         obj.visit_count += 1
         obj.save()
+        res = requests.get('https://ipinfo.io/')
+        data = res.jason()
+        location = data['loc'],split(',')
+        llat = float(location[1])
+        llong = float(location[0])
+        ob = UserLocation(shorturl = link, city = data['city'], long = llong, lat = llat)
+        ob.save() 
         return redirect(req_longurl)
     except Exception as e:
         print(e)
