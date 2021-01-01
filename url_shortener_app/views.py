@@ -63,20 +63,24 @@ def redirect_url(request, link):
         req_longurl = obj.longurl
         obj.visit_count += 1
         obj.save()
-        host_name = socket.gethostname()
-        response = urlopen('https://ipinfo.io/json')
-        data = json.load(response)
+        # host_name = socket.gethostname()
+        # response = urlopen('https://ipinfo.io/json')
+        # data = json.load(response)
 
-        # g = GeoIP2('./geoip')
-        # ip = request.META.get('REMOTE_ADDR')
-        # reader = geoip2.database.Reader('./geoip/GeoLite2-City.mmdb')
-        # response = reader.city(ip)
-        # print(response.city.name)
-        print(data)
+        g = GeoIP2('./geoip')
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[-1].strip()
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        reader = geoip2.database.Reader('./geoip/GeoLite2-City.mmdb')
+        response = reader.city(ip)
+        #print(response.city.name)
+        #print(response)
         # loc = g.city(ip)
         # print(loc)
-        ab = data['loc'].split(',')
-        ob = UserLocation(shorturl = link, city = data['city'], long = ab[0], lat = ab[1])
+        # ab = data['loc'].split(',')
+        ob = UserLocation(shorturl = link, city = response.city.name, long = response.location.longitude, lat = response.location.latitude)
         ob.save()
         return redirect(req_longurl)
     except Exception as e:
