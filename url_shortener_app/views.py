@@ -14,6 +14,7 @@ from .forms import URLForm
 from .models import LongToShort
 from .models import UserLocation
 
+
 import secrets
 
 def home(request):
@@ -79,7 +80,7 @@ def redirect_url(request, link):
             ip = request.META.get('REMOTE_ADDR')
         reader = geoip2.database.Reader('./geoip/GeoLite2-City.mmdb')
         response = reader.city(ip)
-        tim = datetime.datetime.now.time()
+        tim = datetime.datetime.now()
         dat = datetime.date.today()
        
         ob = UserLocation(shorturl = link, ip = ip,  city = response.city.name, long = response.location.longitude, lat = response.location.latitude, date = dat, time = tim)
