@@ -19,28 +19,28 @@
 		}
 
 		header .container {
-			padding-top: 60px;
-			padding-bottom: 40px;
+			padding-top: 30px;
+			padding-bottom: 30px;
 			position: relative;
-			z-index: 1
+			
 		}
 
 		header .intro-text .name {
 			display: block;
 			font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 			text-transform: uppercase;
-			font-weight: 700;
-			font-size: 2em;
+			
+			
 		}
 
 		@media (min-width: 768px) {
 			header .container {
-				padding-top: 120px;
-				padding-bottom: 70px;
+				padding-top: 100px;
+				padding-bottom: 60px;
 			}
 
 			header .intro-text .name {
-				font-size: 4.75em;
+				font-size: 3em;
 			}
 
 			header .intro-text .skills {
@@ -113,12 +113,21 @@
 		footer {
 			color: white;
 			width: 100%;
-			position: absolute;
+			position: relative;
 			left: 0;
 			bottom: 0;
 			padding: 1px 1px;
 			background-color: #233140;
 		}
+
+		.ab:link, .ab:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
 
 		input { color: black }
 
@@ -131,9 +140,9 @@
 	<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#" style="color: white; font-size: x-large;">URL Shortener</a>
+				<a class="navbar-brand" href="https://ra-shorturl.herokuapp.com/" style="color: white; font-size: x-large;">URL Shortener</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="navbar-brand" href="#" style="color: white; font-size: 18px">Home</a>
+				<a class="navbar-brand" href="https://ra-shorturl.herokuapp.com/" style="color: white; font-size: 18px">Home</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="navbar-brand" href="https://ra-shorturl.herokuapp.com/analytics" style="color: white; font-size: 18px;">Analytics</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -150,22 +159,36 @@
 		<div class="container">
 			<div class="row">
 				<div class="intro-text">
-					<h2 class="name">Don't like long URLs?</h2>
-					<hr class="star-light">
-					<p><span class="skills">Shorten it on a mouse click.</span></p><br />
+					<h3 class="name">Your url is shortened</h3>
+                    <p><span class="skills"><a href ="{{shortened}}">{{shortened}}</a></span></p>
+                    <p> <div >
+                        <h1>Thank You!</h1>
+                        <h3 class="lead"><strong>Join our coding club</strong> for 100s of placement and internship opportunities and tutorials</h3>
+                        <p class="lead">
+						  <a class="btn btn-primary btn-sm" href="https://t.me/joinchat/KGbnOEzy-m3j6wbkGN4l8Q" role="button" 
+						  style="background-color: darkblue; padding-top: 10px; padding-left: 20px; padding-right: 20px; padding-bottom: 10px; font-size: 1em;"> Join </a>
+						</p>
+						
+                      </div></p> 
 
-					<form method="post" class="form-inline" id="form_input">
-						{% csrf_token %}
-						{{ form }}
-						<br><br>
-						<input class="btn btn-primary" type="submit" value="Shorten" style="font-size: 24px; background-color: darkblue;">
-					</form>
-					<img src="{% static '/image.jpg'%}" alt="O(1) Coding Club" >
+					
+						<!-- <a href = "https://t.me/joinchat/KGbnOEzy-m3j6wbkGN4l8Q" < button style="font-size: 24px; background-color: darkblue;"  Join ></a><br> -->
+						<!-- <a class = "ab" href="default.asp" target="_blank">This is a link</a><br><br> -->
+                   
 
 				</div>
+				
 			</div>
+			<div>
+				<img src="{% static '/image.jpg'%}" alt="O(1) Coding Club" >
+				
+			</div>
+			<br>
+			<div><a class="btn btn-primary btn-sm" href="https://forms.gle/XTSSNxtxacu2ZnB87" role="button" 
+				style="background-color: darkblue; padding-top: 10px; padding-left: 20px; padding-right: 20px; padding-bottom: 10px; font-size: 1em;"> Give Feedback </a></div>
 		</div>
 	</header>
+	
 
 	<!-- Footer -->
 	<footer class="text-center">

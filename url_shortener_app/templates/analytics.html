@@ -115,19 +115,24 @@
       <thead>
         <tr>
           <th>Short URL</th>
+          <th>IP Address</th>
           <th>City</th>
           <th>Lattitude</th>
           <th>Longitude</th>
+          <th>Date</th>
+          <th>Time</th>
         </tr>
       </thead>
       <tbody>
         {% for item in data %}
         <tr>
-          <!-- <td><a href="https://rr-url.herokuapp.com/{{ d.src }}" target="_blank"> https://rr-url.herokuapp.com/{{ d.src }} </a></td> -->
           <td>{{ item.shorturl }}</td>
+          <td>{{ item.ip }}</td>
           <td>{{ item.city }}</td>
           <td>{{ item.lat }}</td>
           <td>{{ item.long }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.time }}</td>
         </tr>
         {% endfor %}
       </tbody>

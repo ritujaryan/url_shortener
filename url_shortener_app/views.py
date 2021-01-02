@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.gis.geoip2 import GeoIP2
 #from django.template import  RequestContext
 #from django.shortcuts import render_to_response
-from django.utils import timezone
+import datetime
 import requests
 import geoip2.database
 import socket
@@ -48,11 +48,19 @@ def shorten(request):
             else:
                 ob = LongToShort.objects.get(shorturl= ip_customname)
                 if ob.longurl == ip_longurl:
-                    return HttpResponse('Your shorturl is ' + 'https://ra-shorturl.herokuapp.com/redirect/' + ip_customname)
+                    shortene = 'https://ra-shorturl.herokuapp.com/redirect/' + ip_customname
+                    context = {
+                    'shortened' : shortene
+                    }
+                    return render(request, 'thanks1.html', context)
                 else:
                     return render(request, 'sorry.html')
+        shortene = 'https://ra-shorturl.herokuapp.com/redirect/' + final_url
 
-        return HttpResponse('Your shorturl is ' + 'https://ra-shorturl.herokuapp.com/redirect/' + final_url)
+        context = {
+            'shortened' : shortene
+        }
+        return render(request, 'thanks.html', context)
     else:
         myform = URLForm()
         return render(request, 'form.html', {'form': myform})
@@ -63,10 +71,6 @@ def redirect_url(request, link):
         req_longurl = obj.longurl
         obj.visit_count += 1
         obj.save()
-        # host_name = socket.gethostname()
-        # response = urlopen('https://ipinfo.io/json')
-        # data = json.load(response)
-
         g = GeoIP2('./geoip')
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
@@ -75,12 +79,10 @@ def redirect_url(request, link):
             ip = request.META.get('REMOTE_ADDR')
         reader = geoip2.database.Reader('./geoip/GeoLite2-City.mmdb')
         response = reader.city(ip)
-        #print(response.city.name)
-        #print(response)
-        # loc = g.city(ip)
-        # print(loc)
-        # ab = data['loc'].split(',')
-        ob = UserLocation(shorturl = link, city = response.city.name, long = response.location.longitude, lat = response.location.latitude)
+        tim = datetime.datetime.now.time()
+        dat = datetime.date.today()
+       
+        ob = UserLocation(shorturl = link, ip = ip,  city = response.city.name, long = response.location.longitude, lat = response.location.latitude, date = dat, time = tim)
         ob.save()
         return redirect(req_longurl)
     except Exception as e:
@@ -96,3 +98,6 @@ def get_views(request):
 def get_analytics(request):
     rows = UserLocation.objects.all()
     return render(request, 'analytics.html', {'data': rows})
+
+def thanks(request):
+    return render(request, 'thanks.html')
