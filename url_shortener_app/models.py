@@ -8,7 +8,7 @@ class LongToShort(models.Model):
 
 class UserLocation(models.Model):
     shorturl = models.CharField(max_length=25)
-    ip = models.CharField(max_length=10)
+    ip = models.CharField(max_length=20)
     city = models.CharField(max_length=25)
     long = models.DecimalField(max_digits=8, decimal_places=5)
     lat = models.DecimalField(max_digits=8, decimal_places=5) 
