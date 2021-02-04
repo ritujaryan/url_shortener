@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.gis.geoip2 import GeoIP2
-#from django.template import  RequestContext
-#from django.shortcuts import render_to_response
 import datetime
 import requests
 import geoip2.database
@@ -13,6 +11,7 @@ from urllib.request import urlopen
 from .forms import URLForm
 from .models import LongToShort
 from .models import UserLocation
+from django.http import FileResponse
 
 
 import secrets
@@ -102,3 +101,9 @@ def get_analytics(request):
 
 def thanks(request):
     return render(request, 'thanks.html')
+
+def image(request) :
+    return HttpResponse('image.jpg')
+def sendLogo(request):
+	res = FileResponse(open('ezgi.gif', 'rb'))
+	return res

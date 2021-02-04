@@ -10,4 +10,5 @@ urlpatterns = [
     path('analytics/', views.get_analytics),
     path('views/', views.get_views),
     path('thanks/', views.thanks),
+    path('image/', views.sendLogo),
 ]
