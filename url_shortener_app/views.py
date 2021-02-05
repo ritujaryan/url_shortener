@@ -102,8 +102,10 @@ def get_analytics(request):
 def thanks(request):
     return render(request, 'thanks.html')
 
-def image(request) :
-    return HttpResponse('image.jpg')
 def sendLogo(request):
 	res = FileResponse(open('ezgi.gif', 'rb'))
+	return res
+
+def sendgif(request):
+	res = FileResponse(open('coderun.gif', 'rb'))
 	return res

@@ -11,4 +11,5 @@ urlpatterns = [
     path('views/', views.get_views),
     path('thanks/', views.thanks),
     path('image/', views.sendLogo),
+    path('gif/', views.sendgif),
 ]
