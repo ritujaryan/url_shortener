@@ -109,3 +109,7 @@ def sendLogo(request):
 def sendgif(request):
 	res = FileResponse(open('coderun.gif', 'rb'))
 	return res
+
+def sendicon(request):
+	res = FileResponse(open('favicon.ico', 'rb'))
+	return res
