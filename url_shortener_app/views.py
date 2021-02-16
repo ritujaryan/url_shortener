@@ -118,3 +118,6 @@ def sendicon(request):
 	res = FileResponse(open('favicon.ico', 'rb'))
 	return res
 
+def getbg(request):
+	res = FileResponse(open('bg.jpg', 'rb'))
+	return res
