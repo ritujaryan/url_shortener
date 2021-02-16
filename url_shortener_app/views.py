@@ -99,11 +99,15 @@ def get_analytics(request):
     rows = UserLocation.objects.all()
     return render(request, 'analytics.html', {'data': rows})
 
-def thanks(request):
+def thanks(request):                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
     return render(request, 'thanks.html')
 
 def sendLogo(request):
 	res = FileResponse(open('ezgi.gif', 'rb'))
+	return res
+
+def getLogo(request):
+	res = FileResponse(open('logon.png', 'rb'))
 	return res
 
 def sendgif(request):
@@ -113,3 +117,4 @@ def sendgif(request):
 def sendicon(request):
 	res = FileResponse(open('favicon.ico', 'rb'))
 	return res
+
