@@ -121,3 +121,7 @@ def sendicon(request):
 def getbg(request):
 	res = FileResponse(open('bg.jpg', 'rb'))
 	return res
+
+def getbg2(request):
+	res = FileResponse(open('bg2.svg', 'rb'))
+	return res

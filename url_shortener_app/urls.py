@@ -15,4 +15,5 @@ urlpatterns = [
     path('icon/', views.sendicon),
     path('getlogo/', views.getLogo),
     path('getbg/', views.getbg),
+    path('getbg2/', views.getbg2),
 ]
