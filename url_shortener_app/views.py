@@ -125,3 +125,7 @@ def getbg(request):
 def getbg2(request):
 	res = FileResponse(open('bg2.svg', 'rb'))
 	return res
+
+def getbg3(request):
+	res = FileResponse(open('bg3.jpg', 'rb'))
+	return res

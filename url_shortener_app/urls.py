@@ -16,4 +16,5 @@ urlpatterns = [
     path('getlogo/', views.getLogo),
     path('getbg/', views.getbg),
     path('getbg2/', views.getbg2),
+    path('getbg3/', views.getbg3),
 ]
